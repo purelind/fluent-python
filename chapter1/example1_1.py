@@ -3,6 +3,7 @@ import collections
 #: 命名元组
 Card = collections.namedtuple('Card', ['rank', 'suit'])
 
+
 class FrenchDeck:
     #: 列表推导式
     ranks = [str(n) for n in range(2, 11)] + list('JQKA')
@@ -19,6 +20,7 @@ class FrenchDeck:
         return self._cards[position]
 
 
+#: 设置排序权重
 suit_values = dict(spades=3, hearts=2, diamonds=1, clubs=0)
 
 
