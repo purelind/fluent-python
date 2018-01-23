@@ -6,6 +6,9 @@ NEEDLES = [0, 1, 2, 5, 8, 10, 22, 23, 29, 30, 31]
 
 ROW_FMT = '{0:2d} @ {1:2d}    {2}{0:<2d}'
 
+
+#: bisect_right returns an insertion point after the existing item, and
+bisect_left returns the position of the existing item
 def demo(bisect_fn):
     for needle in reversed(NEEDLES):
         position = bisect_fn(HAYSTACK, needle)
