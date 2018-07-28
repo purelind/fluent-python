@@ -29,8 +29,16 @@ def fibonacci(n):
     return fibonacci(n - 2) + fibonacci(n - 1)
 
 
+@functools.lru_cache()
+@clock
+def fibonacci2(n):
+    if n < 2:
+        return n
+    return fibonacci2(n - 2) + fibonacci2(n - 1)
+
+
 def main():
-    print(fibonacci(6))
+    print(fibonacci2(6))
 
 
 if __name__ == '__main__':
