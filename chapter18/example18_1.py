@@ -3,8 +3,10 @@ import time
 import threading
 import itertools
 
+
 class Signal:
     go = True
+
 
 def spin(msg, signal):
     write, flush = sys.stdout.write, sys.stdout.flush
@@ -18,20 +20,23 @@ def spin(msg, signal):
             break
     write(' ' * len(status) + '\x08' * len(status))
 
+
 def slow_function():
     time.sleep(3)
     return 42
 
+
 def supervisor():
     signal = Signal()
     spinner = threading.Thread(target=spin,
-                                args=('thinking!', signal))
+                               args=('thinking!', signal))
     print('spinner object:', spinner)
     spinner.start()
     result = slow_function()
     signal.go = False
     spinner.join()
     return result
+
 
 def main():
     result = supervisor()

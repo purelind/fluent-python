@@ -2,6 +2,7 @@ import asyncio
 import itertools
 import sys
 
+
 @asyncio.coroutine
 def spin(msg):
     write, flush = sys.stdout.write, sys.stdout.flush
@@ -18,12 +19,19 @@ def spin(msg):
 
 
 @asyncio.coroutine
+def slow_function():
+    yield from asyncio.sleep(3)
+    return 42
+
+
+@asyncio.coroutine
 def supervisor():
     spinner = asyncio.async(spin('thinking!'))
     print('spinner object:', spinner)
-    result = yeild from slow_function()
+    result = yield from slow_function()
     spinner.cancel()
     return result
+
 
 def main():
     loop = asyncio.get_event_loop()
